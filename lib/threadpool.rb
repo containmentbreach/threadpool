@@ -30,9 +30,9 @@ class ThreadPool
   #                     The pool will never expand over this limit.
   #                     Default is +core_workers * 2+
   # [+keep_alive_time+] Time to keep non-core workers alive. Default is 5 sec.
-  # [+options+]         +:core =>+ _core_workers_
-  #                     +:max =>+ _max_workers_
-  #                     +:keep_alive =>+ _keep_alive_time_
+  # [+options+]         +:core =>+ _core_workers_,
+  #                     +:max =>+ _max_workers_,
+  #                     +:keep_alive =>+ _keep_alive_time_,
   #                     +:init_core => false+ to defer initial setup of core workers.
   # 
   # When called with a block the pool will be closed upon exit from the block.
