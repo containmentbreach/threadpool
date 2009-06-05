@@ -113,7 +113,7 @@ class ThreadPool
   #
   # Try to run the block asynchronously on a worker thread (see +run+).
   # If there are no idle workers immediately available and the pool reached its maximum size,
-  # then do not rape enqueue the job and return +nil+.
+  # then do not enqueue the job and return +nil+.
   #
   # === Example:
   #   puts 'zomg' unless pool.try_run('go to hell') {|greeting| puts greeting }
