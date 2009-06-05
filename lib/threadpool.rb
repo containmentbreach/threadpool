@@ -22,7 +22,7 @@ class ThreadPool
 
   @@controllers = ThreadGroup.new
 
-  #    new([core_workers[, max_workers[, keep_alive_time]]], options]) [{|pool| ... }]
+  #    new([[core_workers[, max_workers[, keep_alive_time]],] options]) [{|pool| ... }]
   #
   # === Arguments
   # [+core_workers+]    Number of core worker threads. The pool will never shrink below this point.
@@ -30,7 +30,10 @@ class ThreadPool
   #                     The pool will never expand over this limit.
   #                     Default is +core_workers * 2+
   # [+keep_alive_time+] Time to keep non-core workers alive. Default is 5 sec.
-  # [+options+]         +:init_core+ => false to defer initial setup of core workers.
+  # [+options+]         +:core =>+ _core_workers_
+  #                     +:max =>+ _max_workers_
+  #                     +:keep_alive =>+ _keep_alive_time_
+  #                     +:init_core => false+ to defer initial setup of core workers.
   # 
   # When called with a block the pool will be closed upon exit from the block.
   # Graceful +close+ will be used, a non-bang version.
@@ -44,13 +47,13 @@ class ThreadPool
     
     options = args.last.is_a?(Hash) ? args.pop : {}
 
-    @core_workers = (args[0] || DEFAULT_CORE_WORKERS).to_i
+    @core_workers = (args[0] || options[:core] || DEFAULT_CORE_WORKERS).to_i
     raise ArgumentError, "core_workers must be a positive integer" if @core_workers <= 0
     
-    @max_workers = (args[1] || @core_workers * 2).to_i
+    @max_workers = (args[1] || options[:max] || @core_workers * 2).to_i
     raise ArgumentError, "max_workers must be >= core_workers" if @max_workers < @core_workers
 
-    @keep_alive_time = (args[2] || DEFAULT_KEEP_ALIVE_TIME).to_f
+    @keep_alive_time = (args[2] || options[:keep_alive] || DEFAULT_KEEP_ALIVE_TIME).to_f
     raise ArgumentError, "keep_alive_time must be a non-negative real number" if @keep_alive_time < 0
 
     @workers, @jobs = ThreadGroup.new, Queue.new
