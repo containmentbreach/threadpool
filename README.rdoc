@@ -1,0 +1,23 @@
+=== Introduction
+O HAI! My name is Pool, Thread Pool. Now in Ruby.
+
+=== Installation
+  gem install pipa-threadpool -s gems.github.com
+
+=== Usage
+  pool = ThreadPool.new
+  ...
+  pool.run(...) do |...|
+    ...
+  end
+  ...
+  pool.close
+
+=== Docs
+http://rdoc.info/projects/pipa/threadpool
+
+=== Bugs & such
+Please report via Github issue tracking.
+
+Free hint: If you liek mudkipz^W^Wfeel like generous today you can tip me at http://tipjoy.com/u/pisuka
+
