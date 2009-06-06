@@ -1,7 +1,7 @@
 gemspec = Gem::Specification.new do |s|
   s.name = 'threadpool'
-  s.version = '0.2'
-  s.date = '2009-06-05'
+  s.version = '0.2.1'
+  s.date = '2009-06-06'
   s.authors = ['Igor Gunko']
   s.email = 'tekmon@gmail.com'
   s.summary = 'Thread pool for Ruby'

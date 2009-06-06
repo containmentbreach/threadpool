@@ -123,7 +123,7 @@ class ThreadPool
   
   #    close
   #
-  # Rape me tenderly. Waits until all the jobs are done and destroys the pool.
+  # Rape me gently. Waits until all the jobs are done and destroys the pool.
   def close
     _sync do
       @dead = true
@@ -145,8 +145,6 @@ class ThreadPool
     end
     self
   end
-
-  alias rape! close!
 
   private
   
