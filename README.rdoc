@@ -2,7 +2,7 @@
 O HAI! My name is Pool, Thread Pool. Now in Ruby.
 
 === Installation
-  gem install pipa-threadpool -s gems.github.com
+  gem install pipa-threadpool -s http://gems.github.com
 
 === Usage
   pool = ThreadPool.new
@@ -20,9 +20,8 @@ http://rdoc.info/projects/pipa/threadpool
 Please report via Github issue tracking.
 
 === See also
-http://github.com/pipa/monkeyjob -- Background job runner
-http://github.com/pipa/xmlnuts -- Ruby <-> XML mapping
-http://github.com/pipa/statelogic -- A simple state machine for ActiveRecord
+* http://github.com/pipa/xmlnuts -- Ruby <-> XML mapping
+* http://github.com/pipa/statelogic -- A simple state machine for ActiveRecord
 
 
 Free hint: If you liek mudkipz^W^Wfeel like generous today you can tip me at http://tipjoy.com/u/pisuka

@@ -56,14 +56,8 @@ class ThreadPool
     @keep_alive_time = (args[2] || options[:keep_alive] || DEFAULT_KEEP_ALIVE_TIME).to_f
     raise ArgumentError, "keep_alive_time must be a non-negative real number" if @keep_alive_time < 0
 
-    @workers, @jobs = ThreadGroup.new, Queue.new
+    @workers, @jobs = [], Queue.new
 
-    @worker_routine = proc do
-      while job = @jobs.pop
-        job.run rescue nil
-      end
-    end
-    
     @controller = Thread.new do
       loop do
         sleep(@keep_alive_time)
@@ -128,9 +122,9 @@ class ThreadPool
     _sync do
       @dead = true
       @controller.run
-      stop_workers(@workers.list.size)
+      stop_workers(@workers.size)
     end
-    ThreadsWait.all_waits(@controller, *@workers.list)
+    ThreadsWait.all_waits(@controller, *@workers)
     self
   end
   
@@ -141,7 +135,7 @@ class ThreadPool
     _sync do
       @dead = true
       @controller.run
-      @workers.list.each {|w| w.kill }
+      @workers.each {|w| w.kill }
     end
     self
   end
@@ -152,7 +146,7 @@ class ThreadPool
     raise ArgumentError, 'block must be provided' unless block_given?
     _sync do
       if @jobs.num_waiting == 0
-        if @workers.list.size < @max_workers
+        if @workers.size < @max_workers
           create_worker
         else
           return nil unless enqueue
@@ -162,7 +156,7 @@ class ThreadPool
     end
     self
   end
-
+  
   def _sync #:nodoc:
     synchronize do
       check_state
@@ -175,7 +169,7 @@ class ThreadPool
   end
 
   def create_worker #:nodoc:
-    @workers.add(Thread.new(&@worker_routine))
+    @workers << Thread.new(&method(:worker_routine))
   end
 
   def create_workers(n) #:nodoc:
@@ -184,6 +178,14 @@ class ThreadPool
 
   def stop_workers(n) #:nodoc:
     n.times { @jobs << nil }
+  end
+  
+  def worker_routine #:nodoc:
+    while job = @jobs.pop
+      job.run rescue nil
+    end
+  ensure
+    synchronize { @workers.delete(Thread.current) }
   end
 end
 
