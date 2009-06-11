@@ -79,11 +79,11 @@ class ThreadPool
     end if block_given?
   end
   
-  #    live? => boolean
+  #    alive? => boolean
   #
   # Pool is live when it's not dead.
   # Pool is dead when it's closed.
-  def live?
+  def alive?
     synchronize { !@dead }
   end
   
@@ -111,7 +111,7 @@ class ThreadPool
   #
   # === Example:
   #   puts 'zomg' unless pool.try_run('go to hell') {|greeting| puts greeting }
-  def try_run(*args, &block)
+  def run?(*args, &block)
     run_core(false, *args, &block)
   end
   
@@ -185,7 +185,7 @@ class ThreadPool
       job.run rescue nil
     end
   ensure
-    synchronize { @workers.delete(Thread.current) }
+    synchronize { @workers.delete(Thread.current) unless @dead }
   end
 end
 

@@ -2,7 +2,7 @@
 O HAI! My name is Pool, Thread Pool. Now in Ruby.
 
 === Installation
-  gem install pipa-threadpool -s http://gems.github.com
+  gem install pipa-threadpool --source http://gems.github.com
 
 === Usage
   pool = ThreadPool.new
