@@ -1,11 +1,11 @@
 gemspec = Gem::Specification.new do |s|
   s.name = 'threadpool'
-  s.version = '0.2.3'
-  s.date = '2009-06-12'
+  s.version = '0.2.4'
+  s.date = '2009-06-21'
   s.authors = ['Igor Gunko']
   s.email = 'tekmon@gmail.com'
   s.summary = 'Thread pool for Ruby'
-  s.homepage = 'http://github.com/pipa/threadpool'
+  s.homepage = 'http://github.com/omg/threadpool'
   s.rubygems_version = '1.3.1'
 
   s.require_paths = %w(lib)
@@ -13,7 +13,7 @@ gemspec = Gem::Specification.new do |s|
   s.files = %w(
     README.rdoc MIT-LICENSE Rakefile
     lib/threadpool.rb
-    lib/pipa-threadpool.rb
+    lib/omg-threadpool.rb
   )
 
   s.test_files = %w(

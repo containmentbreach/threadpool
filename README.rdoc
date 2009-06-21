@@ -2,7 +2,7 @@
 O HAI! My name is Pool, Thread Pool. Now in Ruby.
 
 === Installation
-  gem install pipa-threadpool --source http://gems.github.com
+  gem install omg-threadpool --source http://gems.github.com
 
 === Usage
   pool = ThreadPool.new
@@ -14,14 +14,14 @@ O HAI! My name is Pool, Thread Pool. Now in Ruby.
   pool.close
 
 === More info in docs
-http://rdoc.info/projects/pipa/threadpool
+http://rdoc.info/projects/omg/threadpool
 
 === Bugs & such
 Please report via Github issue tracking.
 
 === See also
-* http://github.com/pipa/xmlnuts -- Ruby <-> XML mapping
-* http://github.com/pipa/statelogic -- A simple state machine for ActiveRecord
+* http://github.com/omg/xmlnuts -- Ruby <-> XML mapping
+* http://github.com/omg/statelogic -- A simple state machine for ActiveRecord
 
 
 Free hint: If you liek mudkipz^W^Wfeel like generous today you can tip me at http://tipjoy.com/u/pisuka
